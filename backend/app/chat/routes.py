@@ -5,8 +5,9 @@ import asyncio
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
+from app.nlp.hate_speech import detector
 
-load_dotenv()
+load_dotenv(override=True)
 
 router = APIRouter()
 
@@ -17,6 +18,13 @@ Format your responses using Markdown for readability.
 """
 
 async def generate_ai_stream(prompt: str):
+    # 1. Hate Speech Check via NLP Module
+    if detector.is_hateful(prompt):
+        import json
+        yield f"data: {json.dumps({'text': '⚠️ **Warning:** Your message was flagged by our NLP Content Filter for containing inappropriate or harmful language. Please rephrase.'})}\n\n"
+        yield "data: [DONE]\n\n"
+        return
+
     api_key = os.getenv("GEMINI_API_KEY")
     
     if not api_key or api_key == "your_api_key_here":
