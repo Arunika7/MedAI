@@ -18,13 +18,24 @@ import {
   Bell,
   Search,
   Moon,
-  Sun
+  Sun,
+  LogOut,
+  User,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeToggle } from "@/components/theme-toggle";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Activity },
@@ -137,17 +148,62 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <div className="flex items-center gap-3">
                 <ThemeToggle />
                 
-                <Button variant="ghost" size="icon" className="rounded-full relative">
-                  <Bell className="h-5 w-5" />
-                  <span className="absolute top-2 right-2.5 h-2 w-2 bg-red-500 rounded-full ring-2 ring-white dark:ring-slate-900" />
-                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger className={buttonVariants({ variant: "ghost", size: "icon", className: "rounded-full relative cursor-pointer" })}>
+                    <Bell className="h-5 w-5" />
+                    <span className="absolute top-2 right-2.5 h-2 w-2 bg-red-500 rounded-full ring-2 ring-white dark:ring-slate-900" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-80">
+                    <DropdownMenuLabel>Notifications</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <div className="flex flex-col gap-1 p-2">
+                      <div className="flex flex-col gap-1 rounded-md p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+                        <span className="text-sm font-medium">New prediction result</span>
+                        <span className="text-xs text-slate-500">Your heart disease risk analysis is ready.</span>
+                      </div>
+                      <div className="flex flex-col gap-1 rounded-md p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+                        <span className="text-sm font-medium">Medication Reminder</span>
+                        <span className="text-xs text-slate-500">It's time to take your Vitamin D.</span>
+                      </div>
+                    </div>
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 
                 <div className="h-8 w-px bg-slate-200 dark:bg-slate-800 mx-1" />
                 
-                <Avatar className="h-9 w-9 cursor-pointer ring-2 ring-transparent hover:ring-blue-500 transition-all">
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>User</AvatarFallback>
-                </Avatar>
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900">
+                    <Avatar className="h-9 w-9 cursor-pointer ring-2 ring-transparent hover:ring-blue-500 transition-all">
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>User</AvatarFallback>
+                    </Avatar>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                      <Link href="/dashboard/profile">
+                        <DropdownMenuItem className="cursor-pointer">
+                          <User className="mr-2 h-4 w-4" />
+                          <span>Profile</span>
+                        </DropdownMenuItem>
+                      </Link>
+                      <Link href="/dashboard/settings">
+                        <DropdownMenuItem className="cursor-pointer">
+                          <Settings className="mr-2 h-4 w-4" />
+                          <span>Settings</span>
+                        </DropdownMenuItem>
+                      </Link>
+                    </DropdownMenuGroup>
+                    <DropdownMenuSeparator />
+                    <Link href="/login">
+                      <DropdownMenuItem className="cursor-pointer text-red-600 dark:text-red-400">
+                        <LogOut className="mr-2 h-4 w-4" />
+                        <span>Log out</span>
+                      </DropdownMenuItem>
+                    </Link>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </header>
 
