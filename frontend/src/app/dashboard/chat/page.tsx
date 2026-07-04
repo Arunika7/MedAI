@@ -232,33 +232,23 @@ export default function ChatPage() {
                     <div className="flex items-center gap-1">
                       <TooltipProvider>
                         <Tooltip>
-                          <TooltipTrigger asChild>
-                            <button className="p-1 hover:text-slate-700 dark:hover:text-slate-200"><Copy className="h-3 w-3" /></button>
-                          </TooltipTrigger>
+                          <TooltipTrigger className="p-1 hover:text-slate-700 dark:hover:text-slate-200"><Copy className="h-3 w-3" /></TooltipTrigger>
                           <TooltipContent>Copy</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                          <TooltipTrigger asChild>
-                            <button className="p-1 hover:text-slate-700 dark:hover:text-slate-200"><RefreshCcw className="h-3 w-3" /></button>
-                          </TooltipTrigger>
+                          <TooltipTrigger className="p-1 hover:text-slate-700 dark:hover:text-slate-200"><RefreshCcw className="h-3 w-3" /></TooltipTrigger>
                           <TooltipContent>Regenerate</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                          <TooltipTrigger asChild>
-                            <button className="p-1 hover:text-emerald-500"><ThumbsUp className="h-3 w-3" /></button>
-                          </TooltipTrigger>
+                          <TooltipTrigger className="p-1 hover:text-emerald-500"><ThumbsUp className="h-3 w-3" /></TooltipTrigger>
                           <TooltipContent>Helpful</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                          <TooltipTrigger asChild>
-                            <button className="p-1 hover:text-rose-500"><ThumbsDown className="h-3 w-3" /></button>
-                          </TooltipTrigger>
+                          <TooltipTrigger className="p-1 hover:text-rose-500"><ThumbsDown className="h-3 w-3" /></TooltipTrigger>
                           <TooltipContent>Not helpful</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                          <TooltipTrigger asChild>
-                            <button className="p-1 hover:text-blue-500"><Volume2 className="h-3 w-3" /></button>
-                          </TooltipTrigger>
+                          <TooltipTrigger className="p-1 hover:text-blue-500"><Volume2 className="h-3 w-3" /></TooltipTrigger>
                           <TooltipContent>Read aloud</TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
@@ -298,18 +288,14 @@ export default function ChatPage() {
           <div className="flex items-center gap-1 pb-1 pl-2">
             <TooltipProvider>
               <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700">
-                    <Plus className="h-5 w-5" />
-                  </Button>
+                <TooltipTrigger className={buttonVariants({ variant: "ghost", size: "icon", className: "h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700" })}>
+                  <Plus className="h-5 w-5" />
                 </TooltipTrigger>
                 <TooltipContent>Add attachment</TooltipContent>
               </Tooltip>
               <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 hidden sm:flex">
-                    <Paperclip className="h-4 w-4" />
-                  </Button>
+                <TooltipTrigger className={buttonVariants({ variant: "ghost", size: "icon", className: "h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 hidden sm:flex" })}>
+                  <Paperclip className="h-4 w-4" />
                 </TooltipTrigger>
                 <TooltipContent>Upload Report</TooltipContent>
               </Tooltip>
@@ -334,10 +320,8 @@ export default function ChatPage() {
             <div className="flex items-center gap-1 pb-1 pr-1">
               <TooltipProvider>
                 <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button type="button" variant="ghost" size="icon" className="h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700">
-                      <Mic className="h-5 w-5" />
-                    </Button>
+                  <TooltipTrigger className={buttonVariants({ variant: "ghost", size: "icon", className: "h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700" })} type="button">
+                    <Mic className="h-5 w-5" />
                   </TooltipTrigger>
                   <TooltipContent>Voice input</TooltipContent>
                 </Tooltip>
