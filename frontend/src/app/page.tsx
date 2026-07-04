@@ -5,6 +5,8 @@ import { ArrowRight, Activity, ShieldCheck, Brain, HeartPulse } from "lucide-rea
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+import { ThemeToggle } from "@/components/theme-toggle";
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 selection:bg-blue-500/30 overflow-hidden flex flex-col">
@@ -21,6 +23,7 @@ export default function LandingPage() {
             <Link href="#contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</Link>
           </nav>
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <Link href="/login">
               <Button variant="ghost" className="font-medium hidden md:inline-flex">Sign In</Button>
             </Link>
