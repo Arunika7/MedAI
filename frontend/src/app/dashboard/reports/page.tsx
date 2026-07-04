@@ -59,30 +59,26 @@ export default function ReportsOCR() {
     setProgress(0);
 
     const stages = [
-      { state: "uploading", limit: 30, time: 800 },
-      { state: "ocr", limit: 70, time: 2000 },
-      { state: "analyzing", limit: 95, time: 2500 },
-      { state: "complete", limit: 100, time: 500 }
+      { state: "uploading", limit: 30 },
+      { state: "ocr", limit: 70 },
+      { state: "analyzing", limit: 95 },
+      { state: "complete", limit: 100 }
     ];
-
-    let currentLimit = 0;
-    let currentStage = 0;
 
     const interval = setInterval(() => {
       setProgress(prev => {
-        const target = stages[currentStage].limit;
-        if (prev < target) {
-          return prev + 1;
-        } else {
-          currentStage++;
-          if (currentStage >= stages.length) {
-            clearInterval(interval);
-            setUploadState("complete");
-            return 100;
-          }
-          setUploadState(stages[currentStage].state as any);
-          return prev;
+        const nextVal = prev + 1;
+        if (nextVal >= 100) {
+          clearInterval(interval);
+          setUploadState("complete");
+          return 100;
         }
+        
+        const stage = stages.find(s => nextVal <= s.limit);
+        if (stage && stage.state !== "complete") {
+          setUploadState(stage.state as any);
+        }
+        return nextVal;
       });
     }, 40);
   };
