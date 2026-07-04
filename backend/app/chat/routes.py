@@ -23,8 +23,9 @@ async def generate_ai_stream(prompt: str):
         # Fallback dummy stream if no key provided
         response = "I see you haven't provided a `GEMINI_API_KEY` in the `backend/.env` file yet! Please add your free key from Google AI Studio so I can give you real medical insights."
         words = response.split(' ')
+        import json
         for word in words:
-            yield f"data: {word} \n\n"
+            yield f"data: {json.dumps({'text': word + ' '})}\n\n"
             await asyncio.sleep(0.05)
         yield "data: [DONE]\n\n"
         return

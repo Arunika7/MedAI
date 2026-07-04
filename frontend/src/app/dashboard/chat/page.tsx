@@ -229,23 +229,51 @@ export default function ChatPage() {
                     <div className="flex items-center gap-1">
                       <TooltipProvider>
                         <Tooltip>
-                          <TooltipTrigger className="p-1 hover:text-slate-700 dark:hover:text-slate-200"><Copy className="h-3 w-3" /></TooltipTrigger>
+                          <TooltipTrigger 
+                            className="p-1 hover:text-slate-700 dark:hover:text-slate-200 cursor-pointer"
+                            onClick={() => navigator.clipboard.writeText(msg.content)}
+                          >
+                            <Copy className="h-3 w-3" />
+                          </TooltipTrigger>
                           <TooltipContent>Copy</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                          <TooltipTrigger className="p-1 hover:text-slate-700 dark:hover:text-slate-200"><RefreshCcw className="h-3 w-3" /></TooltipTrigger>
+                          <TooltipTrigger 
+                            className="p-1 hover:text-slate-700 dark:hover:text-slate-200 cursor-pointer"
+                            onClick={() => setInputMessage(`Regenerate response for: "${msg.content.substring(0, 50)}..."`)}
+                          >
+                            <RefreshCcw className="h-3 w-3" />
+                          </TooltipTrigger>
                           <TooltipContent>Regenerate</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                          <TooltipTrigger className="p-1 hover:text-emerald-500"><ThumbsUp className="h-3 w-3" /></TooltipTrigger>
+                          <TooltipTrigger 
+                            className="p-1 hover:text-emerald-500 cursor-pointer"
+                            onClick={(e) => (e.currentTarget.style.color = '#10b981')}
+                          >
+                            <ThumbsUp className="h-3 w-3" />
+                          </TooltipTrigger>
                           <TooltipContent>Helpful</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                          <TooltipTrigger className="p-1 hover:text-rose-500"><ThumbsDown className="h-3 w-3" /></TooltipTrigger>
+                          <TooltipTrigger 
+                            className="p-1 hover:text-rose-500 cursor-pointer"
+                            onClick={(e) => (e.currentTarget.style.color = '#f43f5e')}
+                          >
+                            <ThumbsDown className="h-3 w-3" />
+                          </TooltipTrigger>
                           <TooltipContent>Not helpful</TooltipContent>
                         </Tooltip>
                         <Tooltip>
-                          <TooltipTrigger className="p-1 hover:text-blue-500"><Volume2 className="h-3 w-3" /></TooltipTrigger>
+                          <TooltipTrigger 
+                            className="p-1 hover:text-blue-500 cursor-pointer"
+                            onClick={() => {
+                              const utterance = new SpeechSynthesisUtterance(msg.content);
+                              window.speechSynthesis.speak(utterance);
+                            }}
+                          >
+                            <Volume2 className="h-3 w-3" />
+                          </TooltipTrigger>
                           <TooltipContent>Read aloud</TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
@@ -285,17 +313,24 @@ export default function ChatPage() {
           <div className="flex items-center gap-1 pb-1 pl-2">
             <TooltipProvider>
               <Tooltip>
-                <TooltipTrigger className={buttonVariants({ variant: "ghost", size: "icon", className: "h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700" })}>
+                <TooltipTrigger 
+                  className={buttonVariants({ variant: "ghost", size: "icon", className: "h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 cursor-pointer" })}
+                  onClick={() => document.getElementById('file-upload')?.click()}
+                >
                   <Plus className="h-5 w-5" />
                 </TooltipTrigger>
                 <TooltipContent>Add attachment</TooltipContent>
               </Tooltip>
               <Tooltip>
-                <TooltipTrigger className={buttonVariants({ variant: "ghost", size: "icon", className: "h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 hidden sm:flex" })}>
+                <TooltipTrigger 
+                  className={buttonVariants({ variant: "ghost", size: "icon", className: "h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 hidden sm:flex cursor-pointer" })}
+                  onClick={() => document.getElementById('file-upload')?.click()}
+                >
                   <Paperclip className="h-4 w-4" />
                 </TooltipTrigger>
                 <TooltipContent>Upload Report</TooltipContent>
               </Tooltip>
+              <input type="file" id="file-upload" className="hidden" accept=".pdf,image/*" />
             </TooltipProvider>
           </div>
 
@@ -317,7 +352,11 @@ export default function ChatPage() {
             <div className="flex items-center gap-1 pb-1 pr-1">
               <TooltipProvider>
                 <Tooltip>
-                  <TooltipTrigger className={buttonVariants({ variant: "ghost", size: "icon", className: "h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700" })} type="button">
+                  <TooltipTrigger 
+                    className={buttonVariants({ variant: "ghost", size: "icon", className: "h-9 w-9 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 cursor-pointer" })} 
+                    type="button"
+                    onClick={() => alert("Voice input is not supported in this demo environment. Please type your message.")}
+                  >
                     <Mic className="h-5 w-5" />
                   </TooltipTrigger>
                   <TooltipContent>Voice input</TooltipContent>
