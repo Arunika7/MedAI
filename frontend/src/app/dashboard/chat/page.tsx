@@ -57,14 +57,15 @@ export default function ChatPage() {
     }
   }, [messages, isTyping]);
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputMessage.trim()) return;
+    if (!inputMessage.trim() || isTyping) return;
 
+    const userText = inputMessage;
     const newUserMsg: Message = {
       id: Date.now().toString(),
       role: "user",
-      content: inputMessage,
+      content: userText,
       timestamp: new Date(),
     };
 
@@ -72,17 +73,77 @@ export default function ChatPage() {
     setInputMessage("");
     setIsTyping(true);
 
-    // Simulate AI response for now (to be replaced with actual API call)
-    setTimeout(() => {
-      setIsTyping(false);
-      const aiResponse: Message = {
-        id: (Date.now() + 1).toString(),
+    const aiMsgId = (Date.now() + 1).toString();
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: aiMsgId,
         role: "ai",
-        content: "I understand you're experiencing some symptoms. Could you please provide more details? Specifically, how long have you been feeling this way and on a scale of 1-10, how severe is the discomfort?\n\nWe can also run a quick **Symptom Check** if you'd prefer structured questions.",
+        content: "",
         timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, aiResponse]);
-    }, 2000);
+        isStreaming: true,
+      },
+    ]);
+
+    try {
+      const response = await fetch("http://localhost:8000/stream", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: userText }),
+      });
+
+      if (!response.ok) throw new Error("Failed to connect to AI");
+      if (!response.body) throw new Error("No response body");
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      
+      let done = false;
+      while (!done) {
+        const { value, done: readerDone } = await reader.read();
+        done = readerDone;
+        if (value) {
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split('\n');
+          
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const data = line.slice(6);
+              if (data === '[DONE]') {
+                done = true;
+                break;
+              }
+              try {
+                const parsed = JSON.parse(data);
+                if (parsed.text) {
+                  setMessages((prev) => prev.map(msg => 
+                    msg.id === aiMsgId ? { ...msg, content: msg.content + parsed.text } : msg
+                  ));
+                } else if (parsed.error) {
+                  setMessages((prev) => prev.map(msg => 
+                    msg.id === aiMsgId ? { ...msg, content: msg.content + "\n\n**Error:** " + parsed.error } : msg
+                  ));
+                }
+              } catch (e) {
+                // If JSON fails to parse, it might be an incomplete chunk or raw text.
+                // In a robust implementation, you'd buffer chunks until a full JSON object is formed.
+                // Since this is a simple demo and the backend yields full JSON per line, we can ignore minor parsing errors.
+              }
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      setMessages((prev) => prev.map(msg => 
+        msg.id === aiMsgId ? { ...msg, content: "Sorry, I am currently offline. Please ensure the backend is running." } : msg
+      ));
+    } finally {
+      setIsTyping(false);
+      setMessages((prev) => prev.map(msg => 
+        msg.id === aiMsgId ? { ...msg, isStreaming: false } : msg
+      ));
+    }
   };
 
   return (
