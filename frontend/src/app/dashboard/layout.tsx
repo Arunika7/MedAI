@@ -154,18 +154,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <span className="absolute top-2 right-2.5 h-2 w-2 bg-red-500 rounded-full ring-2 ring-white dark:ring-slate-900" />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-80">
-                    <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <div className="flex flex-col gap-1 p-2">
-                      <div className="flex flex-col gap-1 rounded-md p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
-                        <span className="text-sm font-medium">New prediction result</span>
-                        <span className="text-xs text-slate-500">Your heart disease risk analysis is ready.</span>
+                    <DropdownMenuGroup>
+                      <DropdownMenuLabel>Notifications</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <div className="flex flex-col gap-1 p-2">
+                        <div className="flex flex-col gap-1 rounded-md p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+                          <span className="text-sm font-medium">New prediction result</span>
+                          <span className="text-xs text-slate-500">Your heart disease risk analysis is ready.</span>
+                        </div>
+                        <div className="flex flex-col gap-1 rounded-md p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+                          <span className="text-sm font-medium">Medication Reminder</span>
+                          <span className="text-xs text-slate-500">It's time to take your Vitamin D.</span>
+                        </div>
                       </div>
-                      <div className="flex flex-col gap-1 rounded-md p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
-                        <span className="text-sm font-medium">Medication Reminder</span>
-                        <span className="text-xs text-slate-500">It's time to take your Vitamin D.</span>
-                      </div>
-                    </div>
+                    </DropdownMenuGroup>
                   </DropdownMenuContent>
                 </DropdownMenu>
                 
@@ -179,9 +181,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </Avatar>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56">
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
                     <DropdownMenuGroup>
+                      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
                       <Link href="/dashboard/profile">
                         <DropdownMenuItem className="cursor-pointer">
                           <User className="mr-2 h-4 w-4" />
