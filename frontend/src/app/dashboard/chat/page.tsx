@@ -8,7 +8,6 @@ import {
   Send, 
   Paperclip, 
   Mic, 
-  Smile, 
   MoreVertical, 
   Download, 
   Share, 
@@ -18,13 +17,10 @@ import {
   ThumbsDown,
   Volume2,
   Bot,
-  User,
   Plus
 } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 
@@ -99,12 +95,15 @@ export default function ChatPage() {
       const decoder = new TextDecoder("utf-8");
       
       let done = false;
+      let buffer = "";
+
       while (!done) {
         const { value, done: readerDone } = await reader.read();
         done = readerDone;
         if (value) {
-          const chunk = decoder.decode(value, { stream: true });
-          const lines = chunk.split('\n');
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop() || "";
           
           for (const line of lines) {
             if (line.startsWith('data: ')) {
@@ -125,9 +124,7 @@ export default function ChatPage() {
                   ));
                 }
               } catch (e) {
-                // If JSON fails to parse, it might be an incomplete chunk or raw text.
-                // In a robust implementation, you'd buffer chunks until a full JSON object is formed.
-                // Since this is a simple demo and the backend yields full JSON per line, we can ignore minor parsing errors.
+                console.error("Failed to parse SSE chunk:", data, e);
               }
             }
           }
