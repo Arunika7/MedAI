@@ -24,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Activity },
@@ -38,11 +39,10 @@ const navigation = [
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
     <TooltipProvider>
-      <div className={`min-h-screen ${isDarkMode ? 'dark bg-slate-950' : 'bg-slate-50'}`}>
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
         <div className="flex h-screen overflow-hidden text-slate-900 dark:text-slate-50">
           
           {/* Mobile sidebar backdrop */}
@@ -135,19 +135,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               </div>
 
               <div className="flex items-center gap-3">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button 
-                      variant="ghost" 
-                      size="icon" 
-                      className="rounded-full"
-                      onClick={() => setIsDarkMode(!isDarkMode)}
-                    >
-                      {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Toggle theme</TooltipContent>
-                </Tooltip>
+                <ThemeToggle />
                 
                 <Button variant="ghost" size="icon" className="rounded-full relative">
                   <Bell className="h-5 w-5" />
