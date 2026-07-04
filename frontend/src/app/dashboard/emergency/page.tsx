@@ -83,7 +83,7 @@ export default function EmergencyPage() {
             {EMERGENCY_CONTACTS.map((contact, idx) => (
               <div key={idx} className="flex items-center justify-between p-4 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-slate-300 dark:hover:border-slate-700 transition-all group cursor-pointer">
                 <div className="flex items-center gap-4">
-                  <div className={\`h-12 w-12 rounded-full flex items-center justify-center \${contact.bg} \${contact.color}\`}>
+                  <div className={`h-12 w-12 rounded-full flex items-center justify-center ${contact.bg} ${contact.color}`}>
                     <contact.icon className="h-5 w-5" />
                   </div>
                   <div>

@@ -108,7 +108,7 @@ export default function HistoryPage() {
         {filteredData.length === 0 ? (
           <div className="text-center py-12 text-slate-500">
             <History className="h-12 w-12 mx-auto text-slate-300 mb-4" />
-            <p>No history records found matching "{searchQuery}"</p>
+            <p>No history records found matching &quot;{searchQuery}&quot;</p>
           </div>
         ) : (
           filteredData.map((item, index) => (

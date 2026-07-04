@@ -113,7 +113,7 @@ export default function DashboardHome() {
                 <span className="text-blue-100 font-medium mb-2 text-lg">/100</span>
               </div>
               <p className="mt-4 text-blue-50 leading-relaxed text-sm">
-                Your health score is excellent. Your recent vitals are stable, and you've met your activity goals for 4 consecutive days.
+                Your health score is excellent. Your recent vitals are stable, and you&apos;ve met your activity goals for 4 consecutive days.
               </p>
             </CardContent>
           </Card>
