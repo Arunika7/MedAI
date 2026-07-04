@@ -224,7 +224,7 @@ export default function ChatPage() {
                 
                 {/* Timestamp & Actions (visible on hover for AI) */}
                 <div className={`flex items-center gap-3 text-xs text-slate-400 px-1 opacity-0 group-hover:opacity-100 transition-opacity ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                  <span>{msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                  <span suppressHydrationWarning>{msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                   {msg.role === 'ai' && (
                     <div className="flex items-center gap-1">
                       <TooltipProvider>
