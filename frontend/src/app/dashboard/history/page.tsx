@@ -15,7 +15,7 @@ import {
   Calendar
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
@@ -123,7 +123,7 @@ export default function HistoryPage() {
                   <div className="flex items-center p-4 sm:p-6 gap-4 sm:gap-6">
                     
                     {/* Icon */}
-                    <div className={\`h-12 w-12 sm:h-14 sm:w-14 shrink-0 rounded-2xl flex items-center justify-center \${item.bgColor} \${item.color}\`}>
+                    <div className={`h-12 w-12 sm:h-14 sm:w-14 shrink-0 rounded-2xl flex items-center justify-center ${item.bgColor} ${item.color}`}>
                       <item.icon className="h-6 w-6 sm:h-7 sm:w-7" />
                     </div>
 
@@ -151,10 +151,8 @@ export default function HistoryPage() {
                         {item.date.split(',')[0]}
                       </span>
                       <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
-                            <MoreHorizontal className="h-5 w-5" />
-                          </Button>
+                        <DropdownMenuTrigger className={buttonVariants({ variant: "ghost", size: "icon", className: "text-slate-400 hover:text-slate-700 dark:hover:text-slate-200" })}>
+                          <MoreHorizontal className="h-5 w-5" />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           <DropdownMenuItem>View Details</DropdownMenuItem>

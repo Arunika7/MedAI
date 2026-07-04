@@ -21,7 +21,7 @@ import {
   User,
   Plus
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -105,10 +105,8 @@ export default function ChatPage() {
             <Download className="h-4 w-4" />
           </Button>
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-slate-500">
-                <MoreVertical className="h-4 w-4" />
-              </Button>
+            <DropdownMenuTrigger className={buttonVariants({ variant: "ghost", size: "icon", className: "text-slate-500" })}>
+              <MoreVertical className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem>Rename Conversation</DropdownMenuItem>

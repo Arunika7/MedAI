@@ -60,7 +60,7 @@ export default function SymptomChecker() {
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-slate-100 dark:bg-slate-800 rounded-full z-0" />
           <div 
             className="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-blue-600 rounded-full z-0 transition-all duration-500"
-            style={{ width: \`\${(currentStep / (STEPS.length - 1)) * 100}%\` }}
+            style={{ width: `${(currentStep / (STEPS.length - 1)) * 100}%` }}
           />
           
           {STEPS.map((step, idx) => {
@@ -69,17 +69,17 @@ export default function SymptomChecker() {
             return (
               <div key={step.id} className="relative z-10 flex flex-col items-center gap-2">
                 <div 
-                  className={\`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all duration-300 \${
+                  className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all duration-300 ${
                     isActive 
                       ? 'bg-blue-600 text-white ring-4 ring-blue-100 dark:ring-blue-900' 
                       : isPast 
                         ? 'bg-blue-600 text-white'
                         : 'bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 text-slate-400'
-                  }\`}
+                  }`}
                 >
                   {isPast ? <CheckCircle2 className="h-5 w-5" /> : idx + 1}
                 </div>
-                <span className={\`text-xs font-medium hidden sm:block \${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500'}\`}>
+                <span className={`text-xs font-medium hidden sm:block ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500'}`}>
                   {step.title}
                 </span>
               </div>
@@ -234,9 +234,9 @@ export default function SymptomChecker() {
                         <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                           <motion.div 
                             initial={{ width: 0 }}
-                            animate={{ width: \`\${condition.confidence}%\` }}
+                            animate={{ width: `${condition.confidence}%` }}
                             transition={{ duration: 1, delay: 0.2 }}
-                            className={\`h-full rounded-full \${condition.color}\`}
+                            className={`h-full rounded-full ${condition.color}`}
                           />
                         </div>
                       </div>

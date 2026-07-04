@@ -101,15 +101,15 @@ export default function MedicineLibrary() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
               >
-                <Card className={\`overflow-hidden transition-all duration-300 border-slate-200/60 dark:border-slate-800 \${isExpanded ? 'shadow-lg ring-1 ring-blue-500/20' : 'hover:shadow-md'}\`}>
+                <Card className={`overflow-hidden transition-all duration-300 border-slate-200/60 dark:border-slate-800 ${isExpanded ? 'shadow-lg ring-1 ring-blue-500/20' : 'hover:shadow-md'}`}>
                   
                   {/* Card Header (Clickable) */}
                   <div 
-                    className={\`p-6 cursor-pointer flex flex-col sm:flex-row justify-between gap-4 \${isExpanded ? 'bg-blue-50/50 dark:bg-blue-900/10' : 'bg-white dark:bg-slate-950'}\`}
+                    className={`p-6 cursor-pointer flex flex-col sm:flex-row justify-between gap-4 ${isExpanded ? 'bg-blue-50/50 dark:bg-blue-900/10' : 'bg-white dark:bg-slate-950'}`}
                     onClick={() => setExpandedId(isExpanded ? null : med.id)}
                   >
                     <div className="flex gap-4 items-start">
-                      <div className={\`h-12 w-12 rounded-2xl flex items-center justify-center shrink-0 \${isExpanded ? 'bg-blue-600 text-white' : 'bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400'}\`}>
+                      <div className={`h-12 w-12 rounded-2xl flex items-center justify-center shrink-0 ${isExpanded ? 'bg-blue-600 text-white' : 'bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400'}`}>
                         <Pill className="h-6 w-6" />
                       </div>
                       <div>
@@ -134,7 +134,7 @@ export default function MedicineLibrary() {
                     </div>
                     
                     <div className="flex items-center justify-end sm:justify-start">
-                      <Button variant="ghost" size="icon" className={\`transition-transform duration-300 \${isExpanded ? 'rotate-180' : ''}\`}>
+                      <Button variant="ghost" size="icon" className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
                         <ChevronDown className="h-5 w-5 text-slate-400" />
                       </Button>
                     </div>

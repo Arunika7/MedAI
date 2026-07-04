@@ -53,13 +53,13 @@ export default function SettingsPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={\`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors \${
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                 activeTab === tab.id
                   ? "bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400"
                   : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50"
-              }\`}
+              }`}
             >
-              <tab.icon className={\`h-5 w-5 \${activeTab === tab.id ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400'}\`} />
+              <tab.icon className={`h-5 w-5 ${activeTab === tab.id ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400'}`} />
               {tab.label}
             </button>
           ))}
@@ -91,7 +91,7 @@ export default function SettingsPage() {
                       
                       {/* Light Theme Option */}
                       <div 
-                        className={\`cursor-pointer border-2 rounded-2xl p-4 flex flex-col items-center gap-3 transition-all \${theme === 'light' ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/20' : 'border-slate-200 dark:border-slate-800 hover:border-blue-300'}\`}
+                        className={`cursor-pointer border-2 rounded-2xl p-4 flex flex-col items-center gap-3 transition-all ${theme === 'light' ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/20' : 'border-slate-200 dark:border-slate-800 hover:border-blue-300'}`}
                         onClick={() => setTheme('light')}
                       >
                         <div className="p-3 bg-white border border-slate-200 rounded-full shadow-sm">
@@ -102,7 +102,7 @@ export default function SettingsPage() {
 
                       {/* Dark Theme Option */}
                       <div 
-                        className={\`cursor-pointer border-2 rounded-2xl p-4 flex flex-col items-center gap-3 transition-all \${theme === 'dark' ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/20' : 'border-slate-200 dark:border-slate-800 hover:border-blue-300'}\`}
+                        className={`cursor-pointer border-2 rounded-2xl p-4 flex flex-col items-center gap-3 transition-all ${theme === 'dark' ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/20' : 'border-slate-200 dark:border-slate-800 hover:border-blue-300'}`}
                         onClick={() => setTheme('dark')}
                       >
                         <div className="p-3 bg-slate-900 border border-slate-700 rounded-full shadow-sm">
@@ -113,7 +113,7 @@ export default function SettingsPage() {
 
                       {/* System Theme Option */}
                       <div 
-                        className={\`cursor-pointer border-2 rounded-2xl p-4 flex flex-col items-center gap-3 transition-all \${theme === 'system' ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/20' : 'border-slate-200 dark:border-slate-800 hover:border-blue-300'}\`}
+                        className={`cursor-pointer border-2 rounded-2xl p-4 flex flex-col items-center gap-3 transition-all ${theme === 'system' ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/20' : 'border-slate-200 dark:border-slate-800 hover:border-blue-300'}`}
                         onClick={() => setTheme('system')}
                       >
                         <div className="p-3 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-full shadow-sm">
