@@ -53,8 +53,8 @@ export default function DashboardHome() {
         className="flex flex-col md:flex-row md:items-center justify-between gap-4"
       >
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Good Morning, Alex</h1>
-          <p className="text-slate-500 dark:text-slate-400 mt-1">Here is your health summary for today.</p>
+          <h1 className="text-4xl font-extrabold tracking-tight text-gradient">Good Morning, Alex</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-2 font-medium text-lg">Here is your health summary for today.</p>
         </div>
         <Link href="/dashboard/chat">
           <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg shadow-blue-500/20">
@@ -73,7 +73,7 @@ export default function DashboardHome() {
       >
         {quickActions.map((action, index) => (
           <Link key={index} href={action.href}>
-            <Card className="hover:border-blue-500/50 hover:shadow-md transition-all cursor-pointer group bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm">
+            <Card className="glass-card cursor-pointer group">
               <CardHeader className="flex flex-row items-center gap-4 py-4">
                 <div className={`p-3 rounded-2xl ${action.color} group-hover:scale-110 transition-transform`}>
                   <action.icon className="h-6 w-6" />
@@ -119,7 +119,7 @@ export default function DashboardHome() {
           </Card>
 
           {/* Health Score Trend Chart */}
-          <Card className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm flex-1">
+          <Card className="glass-card flex-1">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium">Health Score Trend</CardTitle>
             </CardHeader>
@@ -150,7 +150,7 @@ export default function DashboardHome() {
           className="lg:col-span-2 flex flex-col gap-6"
         >
           <div className="grid grid-cols-2 gap-4">
-            <Card className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm">
+            <Card className="glass-card">
               <CardHeader className="pb-2">
                 <CardDescription className="flex items-center gap-2 font-medium">
                   <Flame className="h-4 w-4 text-orange-500" /> Active Calories
@@ -164,7 +164,7 @@ export default function DashboardHome() {
               </CardContent>
             </Card>
             
-            <Card className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm">
+            <Card className="glass-card">
               <CardHeader className="pb-2">
                 <CardDescription className="flex items-center gap-2 font-medium">
                   <Droplets className="h-4 w-4 text-cyan-500" /> Hydration
@@ -178,7 +178,7 @@ export default function DashboardHome() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm col-span-2 sm:col-span-1">
+            <Card className="glass-card col-span-2 sm:col-span-1">
               <CardHeader className="pb-2">
                 <CardDescription className="flex items-center gap-2 font-medium">
                   <Moon className="h-4 w-4 text-indigo-500" /> Sleep Analysis
@@ -192,7 +192,7 @@ export default function DashboardHome() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm col-span-2 sm:col-span-1">
+            <Card className="glass-card col-span-2 sm:col-span-1">
               <CardHeader className="pb-2">
                 <CardDescription className="flex items-center gap-2 font-medium">
                   <Activity className="h-4 w-4 text-rose-500" /> Avg Heart Rate
@@ -208,7 +208,7 @@ export default function DashboardHome() {
           </div>
 
           {/* Heart Rate Chart */}
-          <Card className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm flex-1">
+          <Card className="glass-card flex-1">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium">Heart Rate History</CardTitle>
             </CardHeader>
