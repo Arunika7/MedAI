@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Stethoscope, 
@@ -272,7 +273,9 @@ export default function SymptomChecker() {
           ) : (
             <div className="flex gap-3 w-full justify-end">
               <Button variant="outline" onClick={() => setCurrentStep(0)}>Start Over</Button>
-              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">Find a Doctor</Button>
+              <Link href="/dashboard/doctors">
+                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">Find a Doctor</Button>
+              </Link>
             </div>
           )}
         </div>

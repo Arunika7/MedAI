@@ -21,6 +21,7 @@ import {
   Sun,
   LogOut,
   User,
+  Users,
 } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -44,6 +45,7 @@ const navigation = [
   { name: 'Disease Prediction', href: '/dashboard/prediction', icon: Dna },
   { name: 'Medicine Info', href: '/dashboard/medicines', icon: Pill },
   { name: 'Reports OCR', href: '/dashboard/reports', icon: FileText },
+  { name: 'Find a Doctor', href: '/dashboard/doctors', icon: Users },
   { name: 'Previous Chats', href: '/dashboard/history', icon: History },
 ];
 
